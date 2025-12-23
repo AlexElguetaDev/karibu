@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/vercel": "^9.0.2",
     "astro": "^5.16.6",
     "storyblok-js-client": "^7.2.1"
   }
