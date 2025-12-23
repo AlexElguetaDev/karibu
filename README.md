@@ -78,6 +78,13 @@ Asegúrate de tener:
 - Una story llamada `karibu`
 - Un campo `myname` dentro del primer elemento del array `body` en el contenido
 
+### Actualización Automática
+
+El proyecto está configurado como **server-side rendering**, lo que significa que:
+- Cada vez que alguien visita la página, obtiene el contenido más reciente de Storyblok
+- Los cambios en Storyblok se reflejan inmediatamente sin necesidad de hacer deploy
+- Solo necesitas publicar el contenido en Storyblok y estará disponible al instante
+
 ## 🛠️ Comandos Disponibles
 
 | Comando           | Acción                                    |
