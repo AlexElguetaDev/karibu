@@ -9,8 +9,11 @@ try {
 		accessToken: import.meta.env.STORYBLOK_TOKEN,
 	});
 	
+	// Usa 'draft' si STORYBLOK_VERSION=draft en .env, sino 'published'
+	const version = import.meta.env.STORYBLOK_VERSION || 'published';
+	
 	const { data } = await storyblok.get('cdn/stories/karibu', {
-		version: import.meta.env.DEV ? 'draft' : 'published',
+		version,
 	});
 	
 	const storyblokName = data?.story?.content?.body?.[0]?.myname;
