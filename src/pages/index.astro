@@ -1,11 +1,51 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import StoryblokClient from 'storyblok-js-client';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+let name = import.meta.env.DEFAULT_NAME || 'Karibu';
+
+try {
+	const storyblok = new StoryblokClient({
+		accessToken: import.meta.env.STORYBLOK_TOKEN,
+	});
+	
+	const { data } = await storyblok.get('cdn/stories/karibu', {
+		version: 'draft',
+	});
+	
+	const storyblokName = data?.story?.content?.body?.[0]?.myname;
+	if (storyblokName) {
+		name = storyblokName;
+	}
+} catch (error) {
+	console.error('Error fetching Storyblok data:', error);
+}
 ---
 
 <Layout>
-	<Welcome />
+	<main class="container">
+		<h1 class="name">{name}</h1>
+	</main>
 </Layout>
+
+<style>
+	.container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		min-height: 100vh;
+		margin: 0;
+		padding: 2rem;
+		box-sizing: border-box;
+	}
+
+	.name {
+		margin: 0;
+		font-size: clamp(2rem, 5vw, 4rem);
+		font-weight: 400;
+		text-align: center;
+		line-height: 1.2;
+		word-wrap: break-word;
+	}
+</style>
