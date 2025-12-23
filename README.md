@@ -1,46 +1,99 @@
-# Astro Starter Kit: Basics
+# Karibu
 
-```sh
-pnpm create astro@latest -- --template basics
+Proyecto Astro que integra Storyblok para obtener contenido dinámico.
+
+## 🚀 Configuración
+
+### Instalación
+
+```bash
+pnpm install
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Variables de Entorno
 
-## 🚀 Project Structure
+Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
 
-Inside of your Astro project, you'll see the following folders and files:
+```env
+STORYBLOK_TOKEN=tu_token_de_storyblok
+DEFAULT_NAME=Karibu
+```
 
-```text
+- `STORYBLOK_TOKEN`: Tu token de acceso de Storyblok (obligatorio)
+- `DEFAULT_NAME`: Nombre por defecto que se mostrará si no se puede obtener el contenido de Storyblok (opcional)
+
+## 📖 Uso
+
+### Desarrollo
+
+Inicia el servidor de desarrollo:
+
+```bash
+pnpm dev
+```
+
+El proyecto estará disponible en `http://localhost:4321`
+
+### Build
+
+Genera la versión de producción:
+
+```bash
+pnpm build
+```
+
+### Preview
+
+Previsualiza la build de producción:
+
+```bash
+pnpm preview
+```
+
+## 🏗️ Estructura del Proyecto
+
+```
 /
 ├── public/
 │   └── favicon.svg
 ├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
+│   ├── layouts
+│   │   └── Layout.astro
+│   └── pages
+│       └── index.astro
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 📝 Cómo Funciona
 
-## 🧞 Commands
+El proyecto obtiene el nombre desde Storyblok:
 
-All commands are run from the root of the project, from a terminal:
+1. Intenta obtener el contenido de la story `karibu` desde Storyblok
+2. Extrae el campo `myname` del primer elemento del body
+3. Si la obtención falla o no hay contenido, usa el valor por defecto (`DEFAULT_NAME` o "Karibu")
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+### Configuración en Storyblok
 
-## 👀 Want to learn more?
+Asegúrate de tener:
+- Una story llamada `karibu`
+- Un campo `myname` dentro del primer elemento del array `body` en el contenido
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 🛠️ Comandos Disponibles
+
+| Comando           | Acción                                    |
+| :---------------- | :---------------------------------------- |
+| `pnpm install`    | Instala las dependencias                  |
+| `pnpm dev`        | Inicia el servidor de desarrollo          |
+| `pnpm build`      | Genera la build de producción             |
+| `pnpm preview`    | Previsualiza la build localmente          |
+| `pnpm astro ...`  | Ejecuta comandos CLI de Astro             |
+
+## 📚 Dependencias
+
+- **astro**: Framework base
+- **storyblok-js-client**: Cliente para interactuar con la API de Storyblok
+
+## 🔗 Enlaces Útiles
+
+- [Documentación de Astro](https://docs.astro.build)
+- [Documentación de Storyblok](https://www.storyblok.com/docs)
