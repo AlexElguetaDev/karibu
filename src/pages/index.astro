@@ -2,6 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import StoryblokClient from 'storyblok-js-client';
 
+// Deshabilitar cache en Vercel
+Astro.response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+Astro.response.headers.set('CDN-Cache-Control', 'no-store');
+Astro.response.headers.set('Vercel-CDN-Cache-Control', 'no-store');
+
 let name = import.meta.env.DEFAULT_NAME || 'Karibu';
 
 try {
